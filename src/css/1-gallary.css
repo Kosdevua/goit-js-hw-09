@@ -1,0 +1,23 @@
+ul {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+li {
+  width: calc((100% - 48px) / 3);
+  list-style-type: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+.gallery {
+  padding: 0 156px;
+  background-color: #ffffff;
+}
