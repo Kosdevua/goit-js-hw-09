@@ -72,7 +72,7 @@ const images = [
 
 // document.querySelector('.gallery');
 
-const ulEl = document.querySelector('.gallary');
+const ulEl = document.querySelector('.gallery');
 
 function createGallery(obj) {
   let htmlCode = '';
@@ -98,7 +98,7 @@ function createGallery(obj) {
 createGallery(images);
 
 // ініціализація
-const lightbox = new SimpleLightbox('.gallary a', {
+const lightbox = new SimpleLightbox('.gallery a', {
   captionData: 'alt',
   CaptionDelay: 250,
 });
