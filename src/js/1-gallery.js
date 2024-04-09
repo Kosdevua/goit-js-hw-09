@@ -74,7 +74,7 @@ const images = [
 
 const ulEl = document.querySelector('.gallery');
 
-function createGallery(obj) {
+function imagesArray(obj) {
   let htmlCode = '';
   obj.map(el => {
     const { preview, original, description } = el;
@@ -95,10 +95,10 @@ function createGallery(obj) {
   });
   ulEl.innerHTML = htmlCode;
 }
-createGallery(images);
+imagesArray(images);
 
 // ініціализація
 const lightbox = new SimpleLightbox('.gallery a', {
-  captionData: 'alt',
-  CaptionDelay: 250,
+  captionsData: 'alt',
+  captionDelay: 250,
 });

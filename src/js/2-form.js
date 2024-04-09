@@ -17,16 +17,23 @@ const userData = {};
 
 const fillFeedbackFormFields = () => {
   try {
-    const userDataFromLs = JSON.parse(localStorage.getItem('userFeedbackInfo'));
+    const userDataFromLs = JSON.parse(
+      localStorage.getItem('feedback-form-state')
+    );
     if (userDataFromLs === null) {
       return;
     }
 
     for (const key in userDataFromLs) {
-      feedbackFormEl.elements[key].value = userDataFromLs[key];
+      if (feedbackFormEl.elements[key]) {
+        feedbackFormEl.elements[key].value = userDataFromLs[key];
+      }
     }
   } catch (error) {
-    console.log(error);
+    console.log(
+      'Помилка парсингу даних користувача з локального сховища.',
+      error
+    );
   }
 };
 
@@ -34,24 +41,21 @@ fillFeedbackFormFields();
 
 const onFeedbackFieldChange = event => {
   event.preventDefault();
+
   const { target: feedbackFieldEl } = event;
-  // console.log(feedbackFieldEl);
-  const feedbackFieldValue = feedbackFieldEl.value;
+  const feedbackFieldValue = feedbackFieldEl.value.trim();
   const feedbackFieldName = feedbackFieldEl.name;
-  // console.log('name: ', feedbackFieldName);
-  // console.log('value: ', feedbackFieldValue);
 
   userData[feedbackFieldName] = feedbackFieldValue;
-
-  localStorage.setItem('userFeedbackInfo', JSON.stringify(userData));
+  localStorage.setItem('feedback-form-state', JSON.stringify(userData));
 };
 
 const onFeedbackFromSubmit = event => {
   event.preventDefault();
   console.log(userData);
-  localStorage.removeItem('userFeedbackInfo');
+  localStorage.removeItem('feedback-form-state');
   feedbackFormEl.reset();
 };
 
-feedbackFormEl.addEventListener('change', onFeedbackFieldChange);
+feedbackFormEl.addEventListener('input', onFeedbackFieldChange);
 feedbackFormEl.addEventListener('submit', onFeedbackFromSubmit);
